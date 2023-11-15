@@ -1,17 +1,17 @@
-import {Outlet, useNavigate} from "react-router-dom";
+import { Outlet, useNavigate } from 'react-router-dom';
 
-function Layout(){
+function Layout() {
   const navigate = useNavigate();
 
-  return(
+  return (
     <div>
       <Outlet />
       <div>
-        <button onClick={() => navigate("/")}>Home</button>
-        <button onClick={() => navigate("/scrapped")}>Scrapped</button>
+        <button onClick={() => navigate('/')}>Home</button>
+        <button onClick={() => navigate('/scrapped')}>Scrapped</button>
       </div>
     </div>
-  )
+  );
 }
 
 export default Layout;

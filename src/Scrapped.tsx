@@ -1,7 +1,5 @@
-function Scrapped(){
-  return (
-      <div>Scrapped</div>
-  )
+function Scrapped() {
+  return <div>Scrapped</div>;
 }
 
 export default Scrapped;
