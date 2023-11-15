@@ -1,5 +1,5 @@
 import { Outlet, useNavigate } from 'react-router-dom';
-import { Container } from './Layout.style.ts';
+import { Container, Navbar, NavbarButton, NavbarTitle } from './Layout.style.ts';
 import HomeIcon from '@assets/icon-home.svg?react';
 import ScrappedIcon from '@assets/icon-scrapped.svg?react';
 
@@ -11,16 +11,16 @@ function Layout() {
       <div>
         <Outlet />
       </div>
-      <div>
-        <button onClick={() => navigate('/')}>
+      <Navbar>
+        <NavbarButton onClick={() => navigate('/')}>
           <HomeIcon />
-          Home
-        </button>
-        <button onClick={() => navigate('/scrapped')}>
+          <NavbarTitle>홈</NavbarTitle>
+        </NavbarButton>
+        <NavbarButton onClick={() => navigate('/scrapped')}>
           <ScrappedIcon />
-          Scrapped
-        </button>
-      </div>
+          <NavbarTitle>스크랩</NavbarTitle>
+        </NavbarButton>
+      </Navbar>
     </Container>
   );
 }
