@@ -26,6 +26,7 @@
     "@storybook/react": "^7.5.3",
     "@storybook/react-vite": "^7.5.3",
     "@storybook/testing-library": "^0.2.2",
+    "@types/node": "^20.9.0",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@types/styled-components": "^5.1.30",
@@ -40,7 +41,8 @@
     "prettier": "3.1.0",
     "storybook": "^7.5.3",
     "typescript": "^5.0.2",
-    "vite": "^4.4.5"
+    "vite": "^4.4.5",
+    "vite-tsconfig-paths": "^4.2.1"
   },
   "readme": "ERROR: No README data found!",
   "_id": "new-york-times@0.0.0"
