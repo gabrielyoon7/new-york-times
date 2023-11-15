@@ -1,16 +1,19 @@
 import { Outlet, useNavigate } from 'react-router-dom';
+import { Container } from './Layout.style.ts';
 
 function Layout() {
   const navigate = useNavigate();
 
   return (
-    <div>
-      <Outlet />
+    <Container>
+      <div>
+        <Outlet />
+      </div>
       <div>
         <button onClick={() => navigate('/')}>Home</button>
         <button onClick={() => navigate('/scrapped')}>Scrapped</button>
       </div>
-    </div>
+    </Container>
   );
 }
 
