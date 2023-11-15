@@ -9,6 +9,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
+      - name: Set up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.9.0
+          cache: 'yarn'
       - run: yarn
       - uses: chromaui/action@v1
         with:
