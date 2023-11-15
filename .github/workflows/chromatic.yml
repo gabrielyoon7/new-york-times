@@ -16,7 +16,6 @@ jobs:
           npm install -g npm@latest
           npm install -g yarn@latest
           rm -rf node_modules/ yarn.lock package-lock.json
-          yarn
 
       - run: yarn
       - uses: chromaui/action@v1
