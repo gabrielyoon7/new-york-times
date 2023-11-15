@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const StyledContainer = styled.div`
   max-width: 560px;
   margin: 0 auto;
   height: 100vh;
@@ -9,7 +9,7 @@ export const Container = styled.div`
   flex-direction: column;
 `;
 
-export const Navbar = styled.div`
+export const StyledNavbar = styled.div`
   display: flex;
   padding: 20px 80px;
   justify-content: space-between;
@@ -18,14 +18,18 @@ export const Navbar = styled.div`
   background: #000;
 `;
 
-export const NavbarButton = styled.button`
+interface StyledNavbarButtonProps {
+  color?: 'white' | '#6D6D6D';
+}
+
+export const StyledNavbarButton = styled.button<StyledNavbarButtonProps>`
   background: transparent;
   border: none;
-  color: #6d6d6d;
+  color: ${({ color }) => color || '#6D6D6D'};
   cursor: pointer;
 `;
 
-export const NavbarTitle = styled.div`
+export const StyledNavbarTitle = styled.div`
   text-align: center;
   font-size: 10px;
   font-style: normal;
