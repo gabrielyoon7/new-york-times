@@ -1,4 +1,4 @@
-import { StyledNavbarButton, StyledNavbarTitle } from './Layout.style.ts';
+import { StyledNavbarButton, StyledNavbarTitle } from './Layout.styles.ts';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ReactNode } from 'react';
 

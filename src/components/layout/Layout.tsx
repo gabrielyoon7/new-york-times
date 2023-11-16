@@ -1,5 +1,5 @@
 import {Outlet} from 'react-router-dom';
-import {StyledContainer} from './Layout.style.ts';
+import {StyledContainer} from './Layout.styles.ts';
 import Navbar from '@components/layout/Navbar.tsx';
 import {useRecoilValue} from 'recoil';
 import {modalOpenRepository} from '@recoil/modalOpenState.ts';

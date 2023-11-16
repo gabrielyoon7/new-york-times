@@ -1,4 +1,4 @@
-import { StyledNavbar } from '@components/layout/Layout.style.ts';
+import { StyledNavbar } from '@components/layout/Layout.styles.ts';
 import NavLinkButton from '@components/layout/NavLinkButton.tsx';
 import HomeIcon from '@components/layout/HomeIcon.tsx';
 import ScrappedIcon from '@components/layout/ScrappedIcon.tsx';
