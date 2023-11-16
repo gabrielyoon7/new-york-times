@@ -14,15 +14,15 @@ function ScrappedIcon({ color = '#6D6D6D' }: ScrappedIconProps) {
           height="20"
           rx="2"
           stroke={color}
-          stroke-width="2"
+          strokeWidth="2"
         />
         <path
           id="Vector 118"
           d="M8 7H16M8 11.5H16M8 16H13.2"
           stroke={color}
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
       </g>
     </svg>
