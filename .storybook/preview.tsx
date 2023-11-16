@@ -1,6 +1,7 @@
 import type { Preview } from '@storybook/react';
 import { GlobalStyle } from '../src/styles/GlobalStyle';
 import { withRouter } from 'storybook-addon-react-router-v6';
+import { RecoilRoot } from 'recoil';
 
 const preview: Preview = {
   parameters: {
@@ -16,10 +17,10 @@ const preview: Preview = {
     withRouter,
     (Story) => {
       return (
-        <>
+        <RecoilRoot>
           <GlobalStyle />
           <Story />
-        </>
+        </RecoilRoot>
       );
     },
   ],

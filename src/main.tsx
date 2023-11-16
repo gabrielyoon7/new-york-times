@@ -6,6 +6,7 @@ import Home from '@pages/Home.tsx';
 import Scrapped from '@pages/Scrapped.tsx';
 import Layout from '@components/layout/Layout.tsx';
 import { RecoilRoot } from 'recoil';
+import Modal from '@components/modal/Modal.tsx';
 
 const router = createBrowserRouter(
   [
@@ -34,6 +35,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <RecoilRoot>
       <GlobalStyle />
       <RouterProvider router={router} />
+      <Modal />
     </RecoilRoot>
   </React.StrictMode>
 );
