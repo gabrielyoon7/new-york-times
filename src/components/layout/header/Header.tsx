@@ -2,9 +2,7 @@ import { StyledArticleSearchButton, StyledHeaderWrapper } from './Header.styles.
 import ArticleSearchFilterModal from '@pages/article-search-filter-modal/ArticleSearchFilterModal.tsx';
 import { useRecoilValue } from 'recoil';
 import { modalOpenRepository } from '@recoil/modalOpenState.ts';
-import { articleSearchFilterState } from '@recoil/articleSearchFilterState.ts';
-
-// import SearchIcon from '@assets/search.svg?react';
+import { articleSearchFilterState } from '@recoil/articleSearchFilterState.ts'; // import SearchIcon from '@assets/search.svg?react';
 // import CalendarCheckIcon from '@assets/calendar-check.svg?react';
 import SearchIcon from './SearchIcon.tsx';
 import CalendarCheckIcon from '@components/layout/header/CalendarCheckIcon.tsx';
@@ -31,11 +29,15 @@ function Header() {
         {articleSearchFilter.pubDate.length > 0 ? articleSearchFilter.pubDate : '전체 날짜'}
       </StyledArticleSearchButton>
       <StyledArticleSearchButton
-        isChecked={articleSearchFilter.gLocations.length > 0}
+        isChecked={articleSearchFilter.gLocations.filter((country) => country.checked).length > 0}
         onClick={() => openModal(<ArticleSearchFilterModal />)}
       >
-        {articleSearchFilter.gLocations.length > 0
-          ? JSON.stringify(articleSearchFilter.gLocations)
+        {articleSearchFilter.gLocations.filter((country) => country.checked).length > 0
+          ? JSON.stringify(
+              articleSearchFilter.gLocations
+                .filter((country) => country.checked)
+                .map((country) => country.label)
+            )
           : '전체 국가'}
       </StyledArticleSearchButton>
     </StyledHeaderWrapper>

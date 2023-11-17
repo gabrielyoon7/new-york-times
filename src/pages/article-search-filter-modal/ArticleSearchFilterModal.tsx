@@ -12,18 +12,8 @@ import { modalOpenRepository } from '@recoil/modalOpenState.ts';
 function ArticleSearchFilterModal() {
   const headlineRef = useRef<HTMLInputElement>(null);
   const dateRef = useRef<HTMLInputElement>(null);
-  const [countries, setCountries] = useState<Country[]>([
-    { label: '대한민국', keyword: 'korea', checked: false },
-    { label: '중국', keyword: 'china', checked: false },
-    { label: '일본', keyword: 'japan', checked: false },
-    { label: '미국', keyword: 'usa', checked: false },
-    { label: '북한', keyword: 'north korea', checked: false },
-    { label: '러시아', keyword: 'russia', checked: false },
-    { label: '프랑스', keyword: 'france', checked: false },
-    { label: '영국', keyword: 'uk', checked: false },
-    { label: '독일', keyword: 'germany', checked: false },
-  ]);
   const [articleSearchFilter, setArticleSearchFilter] = useRecoilState(articleSearchFilterState);
+  const [countries, setCountries] = useState<Country[]>(articleSearchFilter.gLocations);
   const { closeModal } = useRecoilValue(modalOpenRepository);
 
   const handleSearch = () => {
@@ -31,9 +21,7 @@ function ArticleSearchFilterModal() {
       setArticleSearchFilter({
         headline: headlineRef.current.value,
         pubDate: dateRef.current.value,
-        gLocations: countries
-          .filter((country) => country.checked)
-          .map((country) => country.keyword),
+        gLocations: countries,
       });
       closeModal();
     }
