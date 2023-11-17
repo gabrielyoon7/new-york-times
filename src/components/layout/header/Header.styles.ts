@@ -6,7 +6,11 @@ export const StyledHeaderWrapper = styled.div`
   align-items: center;
 `;
 
-export const StyledArticleSearchButton = styled.button`
+interface StyledArticleSearchButtonProps {
+  isChecked: boolean;
+}
+
+export const StyledArticleSearchButton = styled.button<StyledArticleSearchButtonProps>`
   display: flex;
   padding: 6px 12px 4px 12px;
   justify-content: center;
@@ -16,9 +20,9 @@ export const StyledArticleSearchButton = styled.button`
   margin-right: 7px;
 
   border-radius: 30px;
-  border: 1px solid #c4c4c4;
+  border: 1px solid ${({ isChecked }) => (isChecked ? '#3478F6' : '#6D6D6D')};
 
-  color: #6d6d6d;
+  color: ${({ isChecked }) => (isChecked ? '#3478F6' : '#6D6D6D')};
   text-align: right;
   font-size: 14px;
   font-style: normal;
