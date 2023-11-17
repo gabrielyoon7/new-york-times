@@ -1,10 +1,11 @@
 import Header from './components/header/Header.tsx';
+import { HomeWrapper } from './Home.styles.ts';
 
 function Home() {
   return (
     <>
       <Header />
-      <div>Home</div>
+      <HomeWrapper>Home</HomeWrapper>
     </>
   );
 }
