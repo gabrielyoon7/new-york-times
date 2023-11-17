@@ -1,29 +1,42 @@
 import Header from './components/header/Header.tsx';
-import {HomeContainer, HomeWrapper} from './Home.styles.ts';
-import ArticleCardPreview from '@pages/home/components/article-card-preview/ArticleCardPreview.tsx'; // import { useArticleSearch } from './hooks/useArticleSearch.ts';
-
-// import { useArticleSearch } from './hooks/useArticleSearch.ts';
+import { HomeContainer, HomeWrapper } from './Home.styles.ts';
+import ArticleCardPreview from '@pages/home/components/article-card-preview/ArticleCardPreview.tsx';
+import Button from '@components/common/button/Button.tsx';
+import { useInfiniteArticleSearch } from '@pages/home/hooks/useInfiniteArticleSearch.ts';
+import { Fragment } from 'react';
 
 function Home() {
-  // const { data } = useArticleSearch();
-  const mockArticles = [];
+  const { data, fetchNextPage, isFetching } = useInfiniteArticleSearch();
+
+  if (data === undefined) {
+    return <></>;
+  }
+
   return (
     <>
       <Header />
       <HomeWrapper>
         <HomeContainer>
-          {Array.from({ length: 20 }, (_, i) => (
-            <ArticleCardPreview
-              key={i}
-              article={{
-                headline: `Headline ${i}`,
-                byline: `Byline ${i}`,
-                source: `Source ${i}`,
-                pub_date: '2021-01-01T00:00:00.000Z',
-              }}
-            />
+          {data.pages.map((page) => (
+            <Fragment key={page.nextPage}>
+              {page.articles.map((articlePreview) => (
+                <ArticleCardPreview
+                  key={articlePreview.id}
+                  article={{
+                    id: `${articlePreview.id}`,
+                    headline: articlePreview.headline,
+                    byline: articlePreview.byline,
+                    source: articlePreview.source,
+                    pub_date: articlePreview.pub_date,
+                  }}
+                />
+              ))}
+            </Fragment>
           ))}
         </HomeContainer>
+        <Button fullWidth onClick={() => fetchNextPage()} disabled={isFetching}>
+          {isFetching ? 'loading...' : 'load more'}
+        </Button>
       </HomeWrapper>
     </>
   );

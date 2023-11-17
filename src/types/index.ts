@@ -5,6 +5,7 @@ export interface Country {
 }
 
 export interface ArticlePreview {
+  id: string;
   source: string;
   headline: string;
   pub_date: string;
