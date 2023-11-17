@@ -1,6 +1,12 @@
 import styled from 'styled-components';
 
 export const StyledHeaderWrapper = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+
   padding: 13px 0px 13px 20px;
   display: inline-flex;
   align-items: center;

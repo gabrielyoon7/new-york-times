@@ -7,9 +7,9 @@ export const StyledContainer = styled.div`
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-  background: #f0f1f4;
 `;
 
 export const StyledContent = styled.div`
-  height: 100%;
+  padding-top: 60px;
+  padding-bottom: 80px;
 `;
