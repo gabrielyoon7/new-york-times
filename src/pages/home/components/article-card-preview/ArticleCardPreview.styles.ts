@@ -9,6 +9,8 @@ export const StyledArticleCardPreviewWrapper = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 8px;
+
+  width: calc(100% - 40px);
 `;
 
 export const StyledArticleCardPreviewHeader = styled.div`
