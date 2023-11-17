@@ -1,6 +1,6 @@
-import { StyledNavbarButton, StyledNavbarTitle } from './Layout.styles.ts';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ReactNode } from 'react';
+import { StyledNavbarButton, StyledNavbarTitle } from './Navbar.styles.ts';
 
 interface NavLinkButtonProps {
   path: '/' | '/scrapped';

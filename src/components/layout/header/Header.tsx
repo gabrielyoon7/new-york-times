@@ -1,7 +1,4 @@
-import {
-  StyledArticleSearchButton,
-  StyledHeaderWrapper,
-} from '@components/layout/Header.styles.ts';
+import { StyledArticleSearchButton, StyledHeaderWrapper } from './Header.styles.ts';
 import ArticleSearchFilterModal from '@pages/article-search-filter-modal/ArticleSearchFilterModal.tsx';
 import { useRecoilValue } from 'recoil';
 import { modalOpenRepository } from '@recoil/modalOpenState.ts';

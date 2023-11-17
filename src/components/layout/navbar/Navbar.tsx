@@ -1,7 +1,7 @@
-import { StyledNavbar } from '@components/layout/Layout.styles.ts';
-import NavLinkButton from '@components/layout/NavLinkButton.tsx';
-import HomeIcon from '@components/layout/HomeIcon.tsx';
-import ScrappedIcon from '@components/layout/ScrappedIcon.tsx';
+import NavLinkButton from './NavLinkButton.tsx';
+import HomeIcon from './HomeIcon.tsx';
+import ScrappedIcon from './ScrappedIcon.tsx';
+import { StyledNavbar } from './Navbar.styles.ts';
 
 function Navbar() {
   return (
