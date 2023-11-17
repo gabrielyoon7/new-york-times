@@ -9,6 +9,10 @@ export const StyledContainer = styled.div`
   flex-direction: column;
 `;
 
+export const StyledContent = styled.div`
+  height: 100%;
+`;
+
 export const StyledNavbar = styled.div`
   display: flex;
   padding: 20px 80px;
