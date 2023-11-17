@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import ArticleSearchFilterWrapper from './ArticleSearchFilterWrapper.tsx';
 import Input from '@components/common/input/Input.tsx';
 import { StyledArticleSearchFilterModal } from '@pages/article-search-filter-modal/ArticleSearchFilterModal.styles.ts';
+import Button from '@components/common/button/Button.tsx';
 
 function ArticleSearchFilterModal() {
   const headlineRef = useRef<HTMLInputElement>(null);
@@ -28,7 +29,9 @@ function ArticleSearchFilterModal() {
         title="날짜"
         renderInput={() => <Input type="date" fullWidth ref={dateRef} />}
       />
-      <button onClick={handleSearch}>검색</button>
+      <Button fullWidth onClick={handleSearch}>
+        필터 적용하기
+      </Button>
     </StyledArticleSearchFilterModal>
   );
 }
