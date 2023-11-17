@@ -4,6 +4,10 @@ export const StyledHeaderWrapper = styled.div`
   padding: 13px 0px 13px 20px;
   display: inline-flex;
   align-items: center;
+  border-bottom: 1px solid #c4c4c4;
+  background: #fff;
+
+  width: calc(100% - 20px);
 `;
 
 interface StyledArticleSearchButtonProps {

@@ -9,36 +9,39 @@ import CalendarCheckIcon from '@components/layout/header/CalendarCheckIcon.tsx';
 
 function Header() {
   const { openModal } = useRecoilValue(modalOpenRepository);
-
   const articleSearchFilter = useRecoilValue(articleSearchFilterState);
+
+  const isHeadlineChecked = articleSearchFilter.headline.length > 0;
+  const isPubDateChecked = articleSearchFilter.pubDate.length > 0;
+  const checkedCountries = articleSearchFilter.gLocations.filter((country) => country.checked);
+  const areCountriesChecked = checkedCountries.length > 0;
+  const countriesButtonTitle = areCountriesChecked
+    ? checkedCountries.length === 1
+      ? checkedCountries[0].label
+      : `${checkedCountries[0].label} 외 ${checkedCountries.length - 1}개`
+    : '전체 국가';
 
   return (
     <StyledHeaderWrapper>
       <StyledArticleSearchButton
-        isChecked={articleSearchFilter.headline.length > 0}
+        isChecked={isHeadlineChecked}
         onClick={() => openModal(<ArticleSearchFilterModal />)}
       >
-        <SearchIcon isChecked={articleSearchFilter.headline.length > 0} />
-        {articleSearchFilter.headline.length > 0 ? articleSearchFilter.headline : '전체 헤드라인'}
+        <SearchIcon isChecked={isHeadlineChecked} />
+        {isHeadlineChecked ? articleSearchFilter.headline : '전체 헤드라인'}
       </StyledArticleSearchButton>
       <StyledArticleSearchButton
-        isChecked={articleSearchFilter.pubDate.length > 0}
+        isChecked={isPubDateChecked}
         onClick={() => openModal(<ArticleSearchFilterModal />)}
       >
-        <CalendarCheckIcon isChecked={articleSearchFilter.pubDate.length > 0} />
-        {articleSearchFilter.pubDate.length > 0 ? articleSearchFilter.pubDate : '전체 날짜'}
+        <CalendarCheckIcon isChecked={isPubDateChecked} />
+        {isPubDateChecked ? articleSearchFilter.pubDate : '전체 날짜'}
       </StyledArticleSearchButton>
       <StyledArticleSearchButton
-        isChecked={articleSearchFilter.gLocations.filter((country) => country.checked).length > 0}
+        isChecked={areCountriesChecked}
         onClick={() => openModal(<ArticleSearchFilterModal />)}
       >
-        {articleSearchFilter.gLocations.filter((country) => country.checked).length > 0
-          ? JSON.stringify(
-              articleSearchFilter.gLocations
-                .filter((country) => country.checked)
-                .map((country) => country.label)
-            )
-          : '전체 국가'}
+        {countriesButtonTitle}
       </StyledArticleSearchButton>
     </StyledHeaderWrapper>
   );
