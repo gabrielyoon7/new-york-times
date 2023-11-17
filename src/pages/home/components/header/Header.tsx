@@ -5,7 +5,7 @@ import { modalOpenRepository } from '@recoil/modalOpenState.ts';
 import { articleSearchFilterState } from '@recoil/articleSearchFilterState.ts'; // import SearchIcon from '@assets/search.svg?react';
 // import CalendarCheckIcon from '@assets/calendar-check.svg?react';
 import SearchIcon from './SearchIcon.tsx';
-import CalendarCheckIcon from '@components/layout/header/CalendarCheckIcon.tsx';
+import CalendarCheckIcon from './CalendarCheckIcon.tsx';
 
 function Header() {
   const { openModal } = useRecoilValue(modalOpenRepository);
