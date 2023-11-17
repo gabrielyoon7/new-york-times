@@ -5,6 +5,9 @@ import { StyledArticleSearchFilterModal } from '@pages/article-search-filter-mod
 import Button from '@components/common/button/Button.tsx';
 import CountryPicker from '@pages/article-search-filter-modal/CountryPicker.tsx';
 import { Country } from '@types';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { articleSearchFilterState } from '@recoil/articleSearchFilterState.ts';
+import { modalOpenRepository } from '@recoil/modalOpenState.ts';
 
 function ArticleSearchFilterModal() {
   const headlineRef = useRef<HTMLInputElement>(null);
@@ -20,18 +23,19 @@ function ArticleSearchFilterModal() {
     { label: '영국', keyword: 'uk', checked: false },
     { label: '독일', keyword: 'germany', checked: false },
   ]);
+  const setArticleSearchFilter = useSetRecoilState(articleSearchFilterState);
+  const { closeModal } = useRecoilValue(modalOpenRepository);
 
   const handleSearch = () => {
     if (headlineRef.current && dateRef.current) {
-      alert(
-        JSON.stringify({
-          '헤드라인 값:': headlineRef.current.value,
-          '날짜 값:': dateRef.current.value,
-          '국가 값:': countries
-            .filter((country) => country.checked)
-            .map((country) => country.keyword),
-        })
-      );
+      setArticleSearchFilter({
+        headline: headlineRef.current.value,
+        pubDate: dateRef.current.value,
+        gLocations: countries
+          .filter((country) => country.checked)
+          .map((country) => country.keyword),
+      });
+      closeModal();
     }
   };
 

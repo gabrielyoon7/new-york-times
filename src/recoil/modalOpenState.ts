@@ -14,12 +14,12 @@ export const modalContentState = atom<ReactNode>({
 export const modalOpenRepository = selector({
   key: 'modalOpenRepository',
   get: ({ getCallback }) => {
-    const openModal = getCallback(({ set }) => async (content: ReactNode) => {
+    const openModal = getCallback(({ set }) => (content: ReactNode) => {
       set(modalContentState, content);
       set(modalOpenState, true);
     });
 
-    const closeModal = getCallback(({ set }) => async () => {
+    const closeModal = getCallback(({ set }) => () => {
       set(modalContentState, null);
       set(modalOpenState, false);
     });
