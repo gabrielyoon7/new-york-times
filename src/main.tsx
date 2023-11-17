@@ -7,6 +7,8 @@ import Scrapped from '@pages/Scrapped.tsx';
 import Layout from '@components/layout/Layout.tsx';
 import { RecoilRoot } from 'recoil';
 import Modal from '@components/modal/Modal.tsx';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 const router = createBrowserRouter(
   [
@@ -30,12 +32,17 @@ const router = createBrowserRouter(
   }
 );
 
+const queryClient = new QueryClient();
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <RecoilRoot>
-      <GlobalStyle />
-      <RouterProvider router={router} />
-      <Modal />
-    </RecoilRoot>
+    <QueryClientProvider client={queryClient}>
+      <RecoilRoot>
+        <GlobalStyle />
+        <RouterProvider router={router} />
+        <Modal />
+      </RecoilRoot>
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
   </React.StrictMode>
 );
