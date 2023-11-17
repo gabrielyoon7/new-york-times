@@ -10,6 +10,5 @@ export const StyledContainer = styled.div`
 `;
 
 export const StyledContent = styled.div`
-  padding-top: 60px;
   padding-bottom: 80px;
 `;

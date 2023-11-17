@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const HomeWrapper = styled.div`
+  margin-top: 60px;
+
   padding: 20px;
   display: inline-flex;
   flex-direction: column;
