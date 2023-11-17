@@ -1,11 +1,11 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import ArticleSearchFilterWrapper from './ArticleSearchFilterWrapper.tsx';
 import Input from '@components/common/input/Input.tsx';
 import { StyledArticleSearchFilterModal } from '@pages/article-search-filter-modal/ArticleSearchFilterModal.styles.ts';
 import Button from '@components/common/button/Button.tsx';
 import CountryPicker from '@pages/article-search-filter-modal/CountryPicker.tsx';
 import { Country } from '@types';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { articleSearchFilterState } from '@recoil/articleSearchFilterState.ts';
 import { modalOpenRepository } from '@recoil/modalOpenState.ts';
 
@@ -23,7 +23,7 @@ function ArticleSearchFilterModal() {
     { label: '영국', keyword: 'uk', checked: false },
     { label: '독일', keyword: 'germany', checked: false },
   ]);
-  const setArticleSearchFilter = useSetRecoilState(articleSearchFilterState);
+  const [articleSearchFilter, setArticleSearchFilter] = useRecoilState(articleSearchFilterState);
   const { closeModal } = useRecoilValue(modalOpenRepository);
 
   const handleSearch = () => {
@@ -38,6 +38,15 @@ function ArticleSearchFilterModal() {
       closeModal();
     }
   };
+
+  useEffect(() => {
+    if (headlineRef.current) {
+      headlineRef.current.value = articleSearchFilter.headline;
+    }
+    if (dateRef.current) {
+      dateRef.current.value = articleSearchFilter.pubDate;
+    }
+  }, []);
 
   return (
     <StyledArticleSearchFilterModal>
