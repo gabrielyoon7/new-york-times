@@ -19,6 +19,7 @@ const Template = styled.div`
 
 export const Default = () => {
   const defaultArticle: ArticlePreview = {
+    id: '123',
     source: 'The New York Times',
     headline: 'Biden’s Covid Relief Plan Is Popular. Will It Be Enough?',
     byline: 'By Giovanni Russonello',
