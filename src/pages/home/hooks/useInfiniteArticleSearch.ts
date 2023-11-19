@@ -2,11 +2,6 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import { ArticlePreview } from '@types';
 import { ArticleSearchFilter } from '@recoil/articleSearchFilterState.ts';
 
-interface InfiniteArticleSearchResponse {
-  articles: ArticlePreview[];
-  nextPage: number;
-}
-
 interface FetchArticleSearchParams {
   pageParam: number;
   articleSearchFilter: ArticleSearchFilter;
@@ -40,9 +35,11 @@ const fetchArticleSearch = async ({ pageParam, articleSearchFilter }: FetchArtic
       byline: article.byline.original,
     };
   });
+  const isLastPage = data.response.meta.hits < data.response.meta.offset + 10;
+  const isLimitPage = pageParam === 199;
   return {
     articles,
-    nextPage: pageParam === 199 ? -1 : pageParam + 1,
+    nextPage: isLastPage || isLimitPage ? -1 : pageParam + 1,
   };
 };
 

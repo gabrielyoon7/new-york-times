@@ -9,7 +9,8 @@ import { articleSearchFilterState } from '@recoil/articleSearchFilterState.ts';
 
 function Home() {
   const articleSearchFilter = useRecoilValue(articleSearchFilterState);
-  const { data, fetchNextPage, isFetching } = useInfiniteArticleSearch(articleSearchFilter);
+  const { data, fetchNextPage, isFetching, hasNextPage } =
+    useInfiniteArticleSearch(articleSearchFilter);
 
   if (data === undefined) {
     return <></>;
@@ -37,9 +38,11 @@ function Home() {
             </Fragment>
           ))}
         </HomeContainer>
-        <Button fullWidth onClick={() => fetchNextPage()} disabled={isFetching}>
-          {isFetching ? 'loading...' : 'load more'}
-        </Button>
+        {hasNextPage && (
+          <Button fullWidth onClick={() => fetchNextPage()} disabled={isFetching}>
+            {isFetching ? 'loading...' : 'load more'}
+          </Button>
+        )}
       </HomeWrapper>
     </>
   );
