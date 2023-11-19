@@ -21,7 +21,7 @@ export const StyledModalContent = styled.div`
   border-radius: 16px;
   padding: 20px;
   max-width: 480px;
-  width: 100%;
+  width: calc(100% - 80px);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
