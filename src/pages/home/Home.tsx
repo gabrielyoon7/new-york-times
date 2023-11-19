@@ -4,9 +4,12 @@ import ArticleCardPreview from '@pages/home/components/article-card-preview/Arti
 import Button from '@components/common/button/Button.tsx';
 import { useInfiniteArticleSearch } from '@pages/home/hooks/useInfiniteArticleSearch.ts';
 import { Fragment } from 'react';
+import { useRecoilValue } from 'recoil';
+import { articleSearchFilterState } from '@recoil/articleSearchFilterState.ts';
 
 function Home() {
-  const { data, fetchNextPage, isFetching } = useInfiniteArticleSearch();
+  const articleSearchFilter = useRecoilValue(articleSearchFilterState);
+  const { data, fetchNextPage, isFetching } = useInfiniteArticleSearch(articleSearchFilter);
 
   if (data === undefined) {
     return <></>;
