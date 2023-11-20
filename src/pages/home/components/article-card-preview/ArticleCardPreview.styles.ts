@@ -16,7 +16,7 @@ export const StyledArticleCardPreviewWrapper = styled.div`
 export const StyledArticleCardPreviewHeader = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: start;
   width: 100%;
 `;
 
@@ -35,6 +35,10 @@ export const StyledArticleCardPreviewTitle = styled.p`
   line-height: 28px; /* 155.556% */
   letter-spacing: -0.9px;
   text-transform: uppercase;
+
+  height: 56px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 export const StyledArticleCardPreviewAuthorWrapper = styled.p`
@@ -50,6 +54,11 @@ export const StyledArticleCardPreviewAuthor = styled.p`
   font-weight: 400;
   line-height: 20px; /* 153.846% */
   letter-spacing: -0.65px;
+
+  max-width: 120px;
+  height: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 export const StyledArticleCardPreviewDate = styled.p`
@@ -59,4 +68,9 @@ export const StyledArticleCardPreviewDate = styled.p`
   font-weight: 400;
   line-height: 20px; /* 153.846% */
   letter-spacing: -0.65px;
+
+  width: 80px;
+  height: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;

@@ -12,16 +12,12 @@ function Home() {
   const { data, fetchNextPage, isFetching, hasNextPage } =
     useInfiniteArticleSearch(articleSearchFilter);
 
-  if (data === undefined) {
-    return <></>;
-  }
-
   return (
     <>
       <Header />
       <HomeWrapper>
         <HomeContainer>
-          {data.pages.map((page) => (
+          {data?.pages.map((page) => (
             <Fragment key={page.nextPage}>
               {page.articles.map((articlePreview) => (
                 <ArticleCardPreview
