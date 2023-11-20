@@ -1,15 +1,19 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
-import { ArticlePreview } from '@types';
-import { ArticleSearchFilter } from '@recoil/articleSearchFilterState.ts';
+import { ArticlePreview, Country } from '@types';
 
-interface FetchArticleSearchParams {
-  pageParam: number;
-  articleSearchFilter: ArticleSearchFilter;
+interface ArticleSearchFilter {
+  headline: string;
+  pubDate: string;
+  countries: Country[];
 }
 
-const fetchArticleSearch = async ({ pageParam, articleSearchFilter }: FetchArticleSearchParams) => {
-  const { headline, pubDate, gLocations } = articleSearchFilter;
-  const gLocationsKeywords = gLocations
+const fetchArticleSearch = async ({
+  pageParam,
+  countries,
+  pubDate,
+  headline,
+}: ArticleSearchFilter & { pageParam: number }) => {
+  const gLocationsKeywords = countries
     .filter((gLocation) => gLocation.checked)
     .map((gLocation) => gLocation.keyword);
   const gLocationsQuery =
@@ -46,7 +50,7 @@ const fetchArticleSearch = async ({ pageParam, articleSearchFilter }: FetchArtic
 export const useInfiniteArticleSearch = (articleSearchFilter: ArticleSearchFilter) => {
   return useInfiniteQuery({
     queryKey: ['articleSearch', articleSearchFilter],
-    queryFn: ({ pageParam = 0 }) => fetchArticleSearch({ pageParam, articleSearchFilter }),
+    queryFn: ({ pageParam = 0 }) => fetchArticleSearch({ pageParam, ...articleSearchFilter }),
     initialPageParam: 0,
     getNextPageParam: (lastPage, pages) => (lastPage.nextPage > 0 ? lastPage.nextPage : undefined),
     refetchOnWindowFocus: false,

@@ -1,50 +1,59 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 import ArticleSearchFilterWrapper from './ArticleSearchFilterWrapper.tsx';
 import Input from '@components/common/input/Input.tsx';
 import { StyledArticleSearchFilterModal } from '@pages/article-search-filter-modal/ArticleSearchFilterModal.styles.ts';
 import Button from '@components/common/button/Button.tsx';
 import CountryPicker from '@pages/article-search-filter-modal/CountryPicker.tsx';
-import { Country } from '@types';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { articleSearchFilterState } from '@recoil/articleSearchFilterState.ts';
+import { useRecoilValue } from 'recoil';
 import { modalOpenRepository } from '@recoil/modalOpenState.ts';
+import { useNavigate } from 'react-router-dom';
+import { useArticleSearchFilter } from '@pages/home/hooks/useArticleSearchFilter.ts';
 
 function ArticleSearchFilterModal() {
-  const headlineRef = useRef<HTMLInputElement>(null);
-  const dateRef = useRef<HTMLInputElement>(null);
-  const [articleSearchFilter, setArticleSearchFilter] = useRecoilState(articleSearchFilterState);
-  const [countries, setCountries] = useState<Country[]>(articleSearchFilter.gLocations);
+  const { headline, setHeadline, pubDate, setPubDate, countries, setCountries } =
+    useArticleSearchFilter();
+
   const { closeModal } = useRecoilValue(modalOpenRepository);
+  const navigate = useNavigate();
 
   const handleSearch = () => {
-    if (headlineRef.current && dateRef.current) {
-      setArticleSearchFilter({
-        headline: headlineRef.current.value,
-        pubDate: dateRef.current.value,
-        gLocations: countries,
-      });
-      closeModal();
-    }
+    const gLocationsKeywords = countries
+      .filter((country) => country.checked)
+      .map((country) => country.keyword)
+      .join(',');
+    const gLocationsQuery = gLocationsKeywords.length > 0 ? `glocations=${gLocationsKeywords}` : '';
+    const headlineQuery = headline.length > 0 ? `headline=${headline}` : '';
+    const pubDateQuery = pubDate.length > 0 ? `pub_date=${pubDate}` : '';
+    const queryString = [gLocationsQuery, headlineQuery, pubDateQuery]
+      .filter((query) => query.length > 0)
+      .join('&');
+    navigate(`?${queryString}`);
+    closeModal();
   };
-
-  useEffect(() => {
-    if (headlineRef.current) {
-      headlineRef.current.value = articleSearchFilter.headline;
-    }
-    if (dateRef.current) {
-      dateRef.current.value = articleSearchFilter.pubDate;
-    }
-  }, []);
 
   return (
     <StyledArticleSearchFilterModal>
       <ArticleSearchFilterWrapper
         title="헤드라인"
-        renderInput={() => <Input type="text" fullWidth ref={headlineRef} />}
+        renderInput={() => (
+          <Input
+            type="text"
+            fullWidth
+            value={headline}
+            onChange={(e) => setHeadline(e.target.value)}
+          />
+        )}
       />
       <ArticleSearchFilterWrapper
         title="날짜"
-        renderInput={() => <Input type="date" fullWidth ref={dateRef} />}
+        renderInput={() => (
+          <Input
+            type="date"
+            fullWidth
+            value={pubDate}
+            onChange={(e) => setPubDate(e.target.value)}
+          />
+        )}
       />
       <ArticleSearchFilterWrapper
         title="국가"

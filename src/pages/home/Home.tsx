@@ -4,13 +4,15 @@ import ArticleCardPreview from '@pages/home/components/article-card-preview/Arti
 import Button from '@components/common/button/Button.tsx';
 import { useInfiniteArticleSearch } from '@pages/home/hooks/useInfiniteArticleSearch.ts';
 import { Fragment } from 'react';
-import { useRecoilValue } from 'recoil';
-import { articleSearchFilterState } from '@recoil/articleSearchFilterState.ts';
+import { useArticleSearchFilter } from '@pages/home/hooks/useArticleSearchFilter.ts';
 
 function Home() {
-  const articleSearchFilter = useRecoilValue(articleSearchFilterState);
-  const { data, fetchNextPage, isFetching, hasNextPage } =
-    useInfiniteArticleSearch(articleSearchFilter);
+  const { headline, pubDate, countries } = useArticleSearchFilter();
+  const { data, fetchNextPage, isFetching, hasNextPage } = useInfiniteArticleSearch({
+    headline,
+    pubDate,
+    countries,
+  });
 
   return (
     <>
