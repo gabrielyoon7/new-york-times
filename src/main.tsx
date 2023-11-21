@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { GlobalStyle } from './styles/GlobalStyle.ts';
 import Home from '@pages/home/Home.tsx';
-import Scrapped from '@pages/Scrapped.tsx';
+import Scrapped from '@pages/scrapped/Scrapped.tsx';
 import Layout from '@components/layout/Layout.tsx';
 import { RecoilRoot } from 'recoil';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';

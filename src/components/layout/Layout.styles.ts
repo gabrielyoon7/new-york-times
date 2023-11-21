@@ -9,6 +9,4 @@ export const StyledContainer = styled.div`
   flex-direction: column;
 `;
 
-export const StyledContent = styled.div`
-  padding-bottom: 80px;
-`;
+export const StyledContent = styled.div``;

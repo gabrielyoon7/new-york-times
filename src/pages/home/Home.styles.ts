@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const HomeWrapper = styled.div`
-  margin-top: 60px;
+  margin: 60px 0 80px 0;
 
   padding: 20px;
   display: inline-flex;
