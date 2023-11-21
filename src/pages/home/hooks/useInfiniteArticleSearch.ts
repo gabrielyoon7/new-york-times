@@ -31,6 +31,9 @@ const fetchArticleSearch = async ({
   );
   const data = await res.json();
   const articles: ArticlePreview[] = data.response.docs.map((article: any) => {
+    const glocations: { value: string }[] = article.keywords.filter(
+      (keyword: { name: string }) => keyword.name === 'glocations'
+    );
     return {
       id: article._id,
       source: article.source,
@@ -38,6 +41,8 @@ const fetchArticleSearch = async ({
       pub_date: article.pub_date,
       byline: article.byline.original,
       url: article.web_url,
+      glocations:
+        glocations.length > 0 ? glocations.map((keyword: { value: string }) => keyword.value) : [],
       isScrapped: false,
     };
   });

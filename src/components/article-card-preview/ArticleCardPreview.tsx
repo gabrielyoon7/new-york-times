@@ -34,6 +34,11 @@ function ArticleCardPreview({ article, onClickStarButton }: ArticleCardPreviewPr
 
   const handleClickStarButton = (e: MouseEvent) => {
     e.stopPropagation();
+    if (article.isScrapped) {
+      alert('스크랩이 해제되었습니다.');
+    } else {
+      alert('스크랩되었습니다.');
+    }
     onClickStarButton(article);
   };
 

@@ -12,4 +12,5 @@ export interface ArticlePreview {
   byline: string;
   url: string;
   isScrapped: boolean;
+  glocations: string[];
 }
