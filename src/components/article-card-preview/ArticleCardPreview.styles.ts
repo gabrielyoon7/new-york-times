@@ -77,4 +77,6 @@ export const StyledArticleCardPreviewDate = styled.p`
   height: 20px;
   overflow: hidden;
   text-overflow: ellipsis;
+
+  text-align: right;
 `;

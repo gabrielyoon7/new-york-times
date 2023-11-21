@@ -11,5 +11,5 @@ export interface ArticlePreview {
   pub_date: string;
   byline: string;
   url: string;
-  scrapped: boolean;
+  isScrapped: boolean;
 }

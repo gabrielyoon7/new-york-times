@@ -9,16 +9,14 @@ import {
 } from './ArticleCardPreview.styles.ts';
 import { ArticlePreview } from '@types';
 import StarIcon from '@components/article-card-preview/StarIcon.tsx';
-import { MouseEvent, useState } from 'react';
-import { getLocalStorage, setLocalStorage } from '@utils/storage.ts';
+import { MouseEvent } from 'react';
 
 interface ArticleCardPreviewProps {
   article: ArticlePreview;
-  isScrapped?: boolean;
+  onClickStarButton: (newArticle: ArticlePreview) => void;
 }
 
-function ArticleCardPreview({ article, isScrapped = false }: ArticleCardPreviewProps) {
-  const [starred, setStarred] = useState(isScrapped);
+function ArticleCardPreview({ article, onClickStarButton }: ArticleCardPreviewProps) {
   const date = new Date(article.pub_date);
   const koreanDate = date
     .toLocaleDateString('ko-KR', {
@@ -34,24 +32,17 @@ function ArticleCardPreview({ article, isScrapped = false }: ArticleCardPreviewP
     .join('')
     .replace(dayOfWeek, ' (' + dayOfWeek + ')');
 
-  const handleStarClick = (e: MouseEvent) => {
+  const handleClickStarButton = (e: MouseEvent) => {
     e.stopPropagation();
-    setStarred(!starred);
-    const prevScrappedArticles = getLocalStorage<ArticlePreview[]>('SCRAPPED_NY_TIMES', []);
-    const removedArticle = prevScrappedArticles.filter((prev) => prev.id !== article.id);
-    if (removedArticle.length === prevScrappedArticles.length) {
-      setLocalStorage<ArticlePreview[]>('SCRAPPED_NY_TIMES', [...prevScrappedArticles, article]);
-    } else {
-      setLocalStorage<ArticlePreview[]>('SCRAPPED_NY_TIMES', [...removedArticle]);
-    }
+    onClickStarButton(article);
   };
 
   return (
     <StyledArticleCardPreviewWrapper onClick={() => (window.location.href = article.url)}>
       <StyledArticleCardPreviewHeader>
         <StyledArticleCardPreviewTitle>{article.headline}</StyledArticleCardPreviewTitle>
-        <button style={{ margin: '4px 0 0 16px' }} onClick={handleStarClick}>
-          <StarIcon isStarred={starred} />
+        <button style={{ margin: '4px 0 0 16px' }} onClick={handleClickStarButton}>
+          <StarIcon isStarred={article.isScrapped} />
         </button>
       </StyledArticleCardPreviewHeader>
       <StyledArticleCardPreviewFooter>
