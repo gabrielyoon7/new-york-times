@@ -1,16 +1,15 @@
 import { Outlet } from 'react-router-dom';
-import { StyledContainer, StyledContent } from './Layout.styles.ts';
+import { StyledContainer } from './Layout.styles.ts';
 import Navbar from './navbar/Navbar.tsx';
 import Modal from '@components/modal/Modal.tsx';
-import React from 'react';
 
-function Layout() {
+function DefaultLayout() {
   return (
     <>
       <StyledContainer>
-        <StyledContent>
+        <div>
           <Outlet />
-        </StyledContent>
+        </div>
         <Navbar />
       </StyledContainer>
       <Modal />
@@ -18,4 +17,4 @@ function Layout() {
   );
 }
 
-export default Layout;
+export default DefaultLayout;

@@ -8,7 +8,7 @@ import {
   StyledArticleCardPreviewWrapper,
 } from './ArticleCardPreview.styles.ts';
 import { ArticlePreview } from '@types';
-import StarIcon from '@pages/home/components/article-card-preview/StarIcon.tsx';
+import StarIcon from '@components/article-card-preview/StarIcon.tsx';
 import { useState } from 'react';
 import { getLocalStorage, setLocalStorage } from '@utils/storage.ts';
 

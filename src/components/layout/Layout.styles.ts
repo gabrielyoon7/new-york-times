@@ -9,4 +9,14 @@ export const StyledContainer = styled.div`
   flex-direction: column;
 `;
 
-export const StyledContent = styled.div``;
+export const StyledArticlePreviewLayout = styled.div`
+  margin: 60px 0 80px 0;
+
+  padding: 20px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+
+  width: calc(100% - 40px);
+`;
