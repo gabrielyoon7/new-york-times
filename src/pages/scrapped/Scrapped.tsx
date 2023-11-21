@@ -1,4 +1,4 @@
-import ScrappedNotFound from '@pages/scrapped/components/ScrappedNotFound.tsx';
+import ScrappedNotFound from './components/not-found/ScrappedNotFound.tsx';
 
 function Scrapped() {
   return <ScrappedNotFound />;
