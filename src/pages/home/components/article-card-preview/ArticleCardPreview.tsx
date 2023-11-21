@@ -10,13 +10,15 @@ import {
 import { ArticlePreview } from '@types';
 import StarIcon from '@pages/home/components/article-card-preview/StarIcon.tsx';
 import { useState } from 'react';
+import { getLocalStorage, setLocalStorage } from '@utils/storage.ts';
 
 interface ArticleCardPreviewProps {
   article: ArticlePreview;
+  isScrapped?: boolean;
 }
 
-function ArticleCardPreview({ article }: ArticleCardPreviewProps) {
-  const [starred, setStarred] = useState(false);
+function ArticleCardPreview({ article, isScrapped = false }: ArticleCardPreviewProps) {
+  const [starred, setStarred] = useState(isScrapped);
   const date = new Date(article.pub_date);
   const koreanDate = date
     .toLocaleDateString('ko-KR', {
@@ -32,11 +34,22 @@ function ArticleCardPreview({ article }: ArticleCardPreviewProps) {
     .join('')
     .replace(dayOfWeek, ' (' + dayOfWeek + ')');
 
+  const handleStarClick = () => {
+    setStarred(!starred);
+    const prevScrappedArticles = getLocalStorage<ArticlePreview[]>('SCRAPPED_NY_TIMES', []);
+    const removedArticle = prevScrappedArticles.filter((prev) => prev.id !== article.id);
+    if (removedArticle.length === prevScrappedArticles.length) {
+      setLocalStorage<ArticlePreview[]>('SCRAPPED_NY_TIMES', [...prevScrappedArticles, article]);
+    } else {
+      setLocalStorage<ArticlePreview[]>('SCRAPPED_NY_TIMES', [...removedArticle]);
+    }
+  };
+
   return (
     <StyledArticleCardPreviewWrapper>
       <StyledArticleCardPreviewHeader>
         <StyledArticleCardPreviewTitle>{article.headline}</StyledArticleCardPreviewTitle>
-        <button style={{ margin: '4px 0 0 16px' }} onClick={() => setStarred(!starred)}>
+        <button style={{ margin: '4px 0 0 16px' }} onClick={handleStarClick}>
           <StarIcon isStarred={starred} />
         </button>
       </StyledArticleCardPreviewHeader>

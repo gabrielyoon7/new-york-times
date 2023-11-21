@@ -5,6 +5,8 @@ import Button from '@components/common/button/Button.tsx';
 import { useInfiniteArticleSearch } from '@pages/home/hooks/useInfiniteArticleSearch.ts';
 import { Fragment } from 'react';
 import { useArticleSearchFilter } from '@pages/home/hooks/useArticleSearchFilter.ts';
+import { ArticlePreview } from '@types';
+import { getLocalStorage } from '@utils/storage.ts';
 
 function Home() {
   const { headline, pubDate, countries } = useArticleSearchFilter();
@@ -13,6 +15,7 @@ function Home() {
     pubDate,
     countries,
   });
+  const scrappedArticles = getLocalStorage<ArticlePreview[]>('SCRAPPED_NY_TIMES', []);
 
   return (
     <>
@@ -31,6 +34,7 @@ function Home() {
                     source: articlePreview.source,
                     pub_date: articlePreview.pub_date,
                   }}
+                  isScrapped={scrappedArticles.some((article) => article.id === articlePreview.id)}
                 />
               ))}
             </Fragment>
