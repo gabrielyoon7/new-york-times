@@ -10,4 +10,6 @@ export interface ArticlePreview {
   headline: string;
   pub_date: string;
   byline: string;
+  url: string;
+  scrapped: boolean;
 }

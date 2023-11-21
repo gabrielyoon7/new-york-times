@@ -28,13 +28,7 @@ function Home() {
               {page.articles.map((articlePreview) => (
                 <ArticleCardPreview
                   key={articlePreview.id}
-                  article={{
-                    id: `${articlePreview.id}`,
-                    headline: articlePreview.headline,
-                    byline: articlePreview.byline,
-                    source: articlePreview.source,
-                    pub_date: articlePreview.pub_date,
-                  }}
+                  article={articlePreview}
                   isScrapped={scrappedArticles.some((article) => article.id === articlePreview.id)}
                 />
               ))}

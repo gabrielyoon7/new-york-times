@@ -37,6 +37,8 @@ const fetchArticleSearch = async ({
       headline: article.headline.main,
       pub_date: article.pub_date,
       byline: article.byline.original,
+      url: article.web_url,
+      scrapped: false,
     };
   });
   const isLastPage = data.response.meta.hits < data.response.meta.offset + 10;

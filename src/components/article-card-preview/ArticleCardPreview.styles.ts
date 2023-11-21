@@ -11,6 +11,10 @@ export const StyledArticleCardPreviewWrapper = styled.div`
   gap: 8px;
 
   width: calc(100% - 40px);
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const StyledArticleCardPreviewHeader = styled.div`

@@ -9,7 +9,7 @@ import {
 } from './ArticleCardPreview.styles.ts';
 import { ArticlePreview } from '@types';
 import StarIcon from '@components/article-card-preview/StarIcon.tsx';
-import { useState } from 'react';
+import { MouseEvent, useState } from 'react';
 import { getLocalStorage, setLocalStorage } from '@utils/storage.ts';
 
 interface ArticleCardPreviewProps {
@@ -34,7 +34,8 @@ function ArticleCardPreview({ article, isScrapped = false }: ArticleCardPreviewP
     .join('')
     .replace(dayOfWeek, ' (' + dayOfWeek + ')');
 
-  const handleStarClick = () => {
+  const handleStarClick = (e: MouseEvent) => {
+    e.stopPropagation();
     setStarred(!starred);
     const prevScrappedArticles = getLocalStorage<ArticlePreview[]>('SCRAPPED_NY_TIMES', []);
     const removedArticle = prevScrappedArticles.filter((prev) => prev.id !== article.id);
@@ -46,7 +47,7 @@ function ArticleCardPreview({ article, isScrapped = false }: ArticleCardPreviewP
   };
 
   return (
-    <StyledArticleCardPreviewWrapper>
+    <StyledArticleCardPreviewWrapper onClick={() => (window.location.href = article.url)}>
       <StyledArticleCardPreviewHeader>
         <StyledArticleCardPreviewTitle>{article.headline}</StyledArticleCardPreviewTitle>
         <button style={{ margin: '4px 0 0 16px' }} onClick={handleStarClick}>
