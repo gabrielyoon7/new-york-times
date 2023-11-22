@@ -6,7 +6,8 @@ import Button from '@components/common/button/Button.tsx';
 import CountryPicker from '@pages/article-search-filter-modal/CountryPicker.tsx';
 import { useNavigate } from 'react-router-dom';
 import { useArticleSearchFilter } from '@pages/home/hooks/useArticleSearchFilter.ts';
-import { useModal } from '@components/layout/modal-wrapper/ModalProvider.tsx';
+
+import { useModal } from '@components/layout/modal-wrapper/useModal.ts';
 
 function ArticleSearchFilterModal() {
   const { headline, setHeadline, pubDate, setPubDate, countries, setCountries } =

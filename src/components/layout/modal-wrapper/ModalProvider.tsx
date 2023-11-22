@@ -1,20 +1,12 @@
-import { createContext, MouseEvent, ReactNode, useContext, useState } from 'react';
+import { createContext, MouseEvent, ReactNode, useState } from 'react';
 import { StyledModalBackdrop, StyledModalContent } from './Modal.styles.ts';
 
-interface ModalContextType {
+export interface ModalContextType {
   openModal: (content: ReactNode) => void;
   closeModal: () => void;
 }
 
-const ModalContext = createContext<ModalContextType | undefined>(undefined);
-
-export const useModal = (): ModalContextType => {
-  const context = useContext(ModalContext);
-  if (!context) {
-    throw new Error('모달을 사용하려면 ModalProvider를 감싸야 합니다.');
-  }
-  return context;
-};
+export const ModalContext = createContext<ModalContextType | undefined>(undefined);
 
 interface ModalProviderProps {
   children: ReactNode;

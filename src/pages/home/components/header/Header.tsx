@@ -4,7 +4,8 @@ import ArticleSearchFilterModal from '@pages/article-search-filter-modal/Article
 import SearchIcon from './SearchIcon.tsx';
 import CalendarCheckIcon from './CalendarCheckIcon.tsx';
 import { useArticleSearchFilter } from '@pages/home/hooks/useArticleSearchFilter.ts';
-import { useModal } from '@components/layout/modal-wrapper/ModalProvider.tsx';
+
+import { useModal } from '@components/layout/modal-wrapper/useModal.ts';
 
 function Header() {
   const { openModal } = useModal();
