@@ -17,4 +17,17 @@ export const StyledInput = styled.input<StyledInputProps>`
   font-weight: 400;
   line-height: 24px; /* 171.429% */
   letter-spacing: -0.56px;
+
+  &::placeholder {
+    color: #c4c4c4;
+  }
+
+  &[type='date']::before {
+    content: attr(placeholder);
+    width: 100%;
+  }
+
+  &[type='date']::-webkit-calendar-picker-indicator {
+    background: url(/src/assets/calendar-check.svg) no-repeat;
+  }
 `;

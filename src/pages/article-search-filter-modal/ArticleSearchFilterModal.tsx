@@ -38,6 +38,7 @@ function ArticleSearchFilterModal() {
         renderInput={() => (
           <Input
             type="text"
+            placeholder="검색하실 헤드라인을 입력해주세요."
             fullWidth
             value={headline}
             onChange={(e) => setHeadline(e.target.value)}
@@ -49,9 +50,11 @@ function ArticleSearchFilterModal() {
         renderInput={() => (
           <Input
             type="date"
+            placeholder={pubDate.length === 0 ? '날짜를 선택해주세요.' : pubDate}
             fullWidth
             value={pubDate}
             onChange={(e) => setPubDate(e.target.value)}
+            onClick={(e) => e.currentTarget.showPicker()}
           />
         )}
       />
