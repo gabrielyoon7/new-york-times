@@ -61,5 +61,7 @@ export const useInfiniteArticleSearch = (articleSearchFilter: ArticleSearchFilte
     initialPageParam: 0,
     getNextPageParam: (lastPage, pages) => (lastPage.nextPage > 0 ? lastPage.nextPage : undefined),
     refetchOnWindowFocus: false,
+    retry: 1,
+    retryDelay: 1000,
   });
 };
