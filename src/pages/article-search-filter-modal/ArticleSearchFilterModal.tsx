@@ -4,16 +4,15 @@ import Input from '@components/common/input/Input.tsx';
 import { StyledArticleSearchFilterModal } from '@pages/article-search-filter-modal/ArticleSearchFilterModal.styles.ts';
 import Button from '@components/common/button/Button.tsx';
 import CountryPicker from '@pages/article-search-filter-modal/CountryPicker.tsx';
-import { useRecoilValue } from 'recoil';
-import { modalOpenRepository } from '@recoil/modalOpenState.ts';
 import { useNavigate } from 'react-router-dom';
 import { useArticleSearchFilter } from '@pages/home/hooks/useArticleSearchFilter.ts';
+import { useModal } from '@components/layout/modal-wrapper/ModalProvider.tsx';
 
 function ArticleSearchFilterModal() {
   const { headline, setHeadline, pubDate, setPubDate, countries, setCountries } =
     useArticleSearchFilter();
 
-  const { closeModal } = useRecoilValue(modalOpenRepository);
+  const { closeModal } = useModal();
   const navigate = useNavigate();
 
   const handleSearch = () => {

@@ -1,11 +1,7 @@
 import styled from 'styled-components';
 
-interface StyledModalBackdropProps {
-  isOpen: boolean;
-}
-
-export const StyledModalBackdrop = styled.div<StyledModalBackdropProps>`
-  display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
+export const StyledModalBackdrop = styled.div`
+  display: block;
   position: fixed;
   top: 0;
   left: 0;

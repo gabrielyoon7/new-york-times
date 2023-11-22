@@ -1,14 +1,13 @@
 import { StyledArticleSearchButton, StyledHeaderWrapper } from './Header.styles.ts';
 import ArticleSearchFilterModal from '@pages/article-search-filter-modal/ArticleSearchFilterModal.tsx';
-import { useRecoilValue } from 'recoil';
-import { modalOpenRepository } from '@recoil/modalOpenState.ts';
 // import CalendarCheckIcon from '@assets/calendar-check.svg?react';
 import SearchIcon from './SearchIcon.tsx';
 import CalendarCheckIcon from './CalendarCheckIcon.tsx';
 import { useArticleSearchFilter } from '@pages/home/hooks/useArticleSearchFilter.ts';
+import { useModal } from '@components/layout/modal-wrapper/ModalProvider.tsx';
 
 function Header() {
-  const { openModal } = useRecoilValue(modalOpenRepository);
+  const { openModal } = useModal();
   const { headline, pubDate, countries } = useArticleSearchFilter();
 
   const isHeadlineChecked = headline.length > 0;
