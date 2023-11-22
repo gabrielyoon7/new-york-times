@@ -26,7 +26,6 @@ function Home() {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting && hasNextPage) {
-          console.log('fetchNextPage');
           fetchNextPage();
         }
       });
